@@ -3,7 +3,8 @@ import { api } from "boot/axios";
 
 export const useChallengeStore = defineStore('challenge-store', {
   state: () => ({
-    challengeList: []
+    challengeList: [],
+    addChallengeDialogBtnStatus: false,
   }),
 
   actions: {
@@ -11,6 +12,19 @@ export const useChallengeStore = defineStore('challenge-store', {
       try {
         const response = await api.get("/challenge/list");
         this.challengeList = response.data;
+      } catch (error) {
+        console.log("error");
+      }
+    },
+
+    toggleAddChallengeBtn (status) {
+      this.addChallengeDialogBtnStatus = status;
+    },
+
+    async addChallenge (addChallengePayload) {
+      try {
+        await api.post("/challenge", addChallengePayload);
+        // await api.get("/challenge/list");
       } catch (error) {
         console.log("error");
       }

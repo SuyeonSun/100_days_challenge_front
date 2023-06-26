@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, watch } from "vue";
 import { useChallengeStore } from "stores/challenge-store";
 import { storeToRefs } from "pinia";
 
@@ -10,6 +10,10 @@ const {challengeList} = storeToRefs(challengeStore);
 onMounted(() => {
   challengeStore.getChallengeList();
 })
+
+// watch(() => challengeList.value, (newVal) => {
+//   challengeList.value = newVal;
+// })
 </script>
 <template>
   <div>{{challengeList}}</div>

@@ -1,5 +1,12 @@
 <script setup>
 import AddChallengeDialog from "components/challenge/AddChallengeDialog";
+import { useChallengeStore } from "stores/challenge-store";
+
+const challengeStore = useChallengeStore();
+
+const clickAddChallengeBtn = () => {
+  challengeStore.toggleAddChallengeBtn(true);
+}
 </script>
 
 <template>
@@ -8,7 +15,7 @@ import AddChallengeDialog from "components/challenge/AddChallengeDialog";
       <q-header elevated>
         <q-toolbar>
           <q-toolbar-title>Quasar Framework</q-toolbar-title>
-          <q-btn flat round dense icon="add" />
+          <q-btn flat round dense icon="add" @click="clickAddChallengeBtn"/>
           <add-challenge-dialog></add-challenge-dialog>
         </q-toolbar>
       </q-header>
