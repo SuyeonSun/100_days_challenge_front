@@ -2,6 +2,7 @@
 import { useChallengeStore } from "stores/challenge-store";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
+import { useQuasar } from "quasar";
 
 const challengeStore = useChallengeStore();
 
@@ -10,6 +11,8 @@ const { addChallengeDialogBtnStatus } = storeToRefs(challengeStore);
 const title = ref("");
 const goal = ref("");
 
+const $q = useQuasar();
+
 const clickAddBtn = async () => {
   const addChallengePayload = {
     title: title.value,
@@ -17,8 +20,10 @@ const clickAddBtn = async () => {
     isDone: false
   }
   await challengeStore.addChallenge(addChallengePayload);
+  challengeStore.toggleAddChallengeBtn(false);
+  // TODO: 특정 코드 받으면 notify 띄우기
+  // $q.notify("notify");
   await challengeStore.getChallengeList();
-  // TODO: 정상 등록 시 notify 띄우기 및 dialog 닫기
 }
 
 const clickCancelBtn = () => {

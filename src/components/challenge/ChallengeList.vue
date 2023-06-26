@@ -10,10 +10,6 @@ const {challengeList} = storeToRefs(challengeStore);
 onMounted(() => {
   challengeStore.getChallengeList();
 })
-
-// watch(() => challengeList.value, (newVal) => {
-//   challengeList.value = newVal;
-// })
 </script>
 <template>
   <div>{{challengeList}}</div>
