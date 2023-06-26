@@ -18,43 +18,41 @@ const clickAddBtn = async () => {
     title: title.value,
     goal: goal.value,
     isDone: false
-  }
+  };
   await challengeStore.addChallenge(addChallengePayload);
   challengeStore.toggleAddChallengeBtn(false);
   // TODO: 특정 코드 받으면 notify 띄우기
   // $q.notify("notify");
   await challengeStore.getChallengeList();
-}
+};
 
 const clickCancelBtn = () => {
   challengeStore.toggleAddChallengeBtn(false);
-}
+};
 </script>
 
 <template>
-  <div class="q-pa-md">
-    <q-dialog v-model="addChallengeDialogBtnStatus" persistent>
-      <q-card>
-        <q-card-section class="row items-center">
-          <div>Add Challenge</div>
-        </q-card-section>
+  <q-dialog v-model="addChallengeDialogBtnStatus" persistent>
+    <q-card>
+      <q-card-section class="row items-center">
+        <div>Add Challenge</div>
+      </q-card-section>
 
-        <q-card-section>
-          <div>title</div>
-          <div>
-            <q-input outlined v-model="title" dense/>
-          </div>
-          <div>goal</div>
-          <div>
-            <q-input outlined v-model="goal" dense/>
-          </div>
-        </q-card-section>
+      <q-card-section>
+        <div>title</div>
+        <div>
+          <q-input outlined v-model="title" dense />
+        </div>
+        <div>goal</div>
+        <div>
+          <q-input outlined v-model="goal" dense />
+        </div>
+      </q-card-section>
 
-        <q-card-section>
-          <q-btn @click="clickAddBtn">add</q-btn>
-          <q-btn @click="clickCancelBtn">cancel</q-btn>
-        </q-card-section>
-      </q-card>
-    </q-dialog>
-  </div>
+      <q-card-section>
+        <q-btn @click="clickAddBtn">add</q-btn>
+        <q-btn @click="clickCancelBtn">cancel</q-btn>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
