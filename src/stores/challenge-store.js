@@ -28,6 +28,14 @@ export const useChallengeStore = defineStore('challenge-store', {
       } catch (error) {
         console.log("error");
       }
+    },
+
+    async deleteChallenge (challengeId) {
+      try {
+        await api.delete(`/challenge/${challengeId}`);
+      } catch (error) {
+        console.log("error");
+      }
     }
   }
 })
