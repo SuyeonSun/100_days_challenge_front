@@ -5,6 +5,7 @@ export const useChallengeStore = defineStore('challenge-store', {
   state: () => ({
     challengeList: [],
     addChallengeDialogBtnStatus: false,
+    modifyChallengeDialogBtnStatus: false
   }),
 
   actions: {
@@ -21,6 +22,10 @@ export const useChallengeStore = defineStore('challenge-store', {
       this.addChallengeDialogBtnStatus = status;
     },
 
+    toggleModifyChallengeBtn (status) {
+      this.modifyChallengeDialogBtnStatus = status;
+    },
+
     async addChallenge (addChallengePayload) {
       try {
         await api.post("/challenge", addChallengePayload);
@@ -33,6 +38,14 @@ export const useChallengeStore = defineStore('challenge-store', {
     async deleteChallenge (challengeId) {
       try {
         await api.delete(`/challenge/${challengeId}`);
+      } catch (error) {
+        console.log("error");
+      }
+    },
+
+    async modifyChallenge (challengeId, modifyChallengePayload) {
+      try {
+        await api.put(`/challenge/${challengeId}`, modifyChallengePayload);
       } catch (error) {
         console.log("error");
       }
